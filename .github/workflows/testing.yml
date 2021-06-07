@@ -1,0 +1,27 @@
+name: .NET Core
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Testing
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use .NET 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: |
+        dotnet build AmberCastle.OpenWeather/AmberCastle.OpenWeather.csproj -c Debug --no-restore        
+        dotnet build Test/AmberCastle.OpenWeather.Tests/AmberCastle.OpenWeather.Tests.csproj -c Debug --no-restore
+      
+    - name: Run Test
+      run: dotnet test Test/AmberCastle.OpenWeather.Tests/AmberCastle.OpenWeather.Tests.csproj --no-restore --verbosity normal
