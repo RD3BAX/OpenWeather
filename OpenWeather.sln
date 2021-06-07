@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmberCastle.OpenWeather.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmberCastle.OpenWeather", "AmberCastle.OpenWeather\AmberCastle.OpenWeather.csproj", "{8740C844-FAF9-4E43-B99E-4F97F8813708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmberCastle.OpenWeather.Tests", "Test\AmberCastle.OpenWeather.Tests\AmberCastle.OpenWeather.Tests.csproj", "{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,8 +48,21 @@ Global
 		{8740C844-FAF9-4E43-B99E-4F97F8813708}.Release|x64.Build.0 = Release|Any CPU
 		{8740C844-FAF9-4E43-B99E-4F97F8813708}.Release|x86.ActiveCfg = Release|Any CPU
 		{8740C844-FAF9-4E43-B99E-4F97F8813708}.Release|x86.Build.0 = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|x64.Build.0 = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Debug|x86.Build.0 = Debug|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|x64.ActiveCfg = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|x64.Build.0 = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|x86.ActiveCfg = Release|Any CPU
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EC5A9EC5-CD69-4D1B-B32B-434CF6595A27} = {7016669D-23F4-4B33-A96C-F6893E1474F6}
+		{94084FCE-B476-4AA4-A6D2-F7FD0DE57147} = {7016669D-23F4-4B33-A96C-F6893E1474F6}
 	EndGlobalSection
 EndGlobal
