@@ -54,12 +54,12 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var key = "ru";
             string name;
-            if (location[0].local_names.ContainsKey(key))
+            if (location[0].LocalNames.ContainsKey(key))
             {
-                name = location[0].local_names[key];
+                name = location[0].LocalNames[key];
             }
 
-            var reverse = await weather.GetReverseGeocoding(location[0].lat, location[0].lon);
+            var reverse = await weather.GetReverseGeocoding(location[0].Latitude, location[0].Longitude);
 
             var zipLocal = await weather.GetCoordinatesByZip("26651");
 

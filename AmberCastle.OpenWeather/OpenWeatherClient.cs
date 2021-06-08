@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading;
 using System.Threading.Tasks;
+using AmberCastle.OpenWeather.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace AmberCastle.OpenWeather
@@ -24,27 +25,36 @@ namespace AmberCastle.OpenWeather
 
         #region Geo 1.0
 
-        public async Task<WeatherLocation[]> GetDirectGeocoding(string Name, int Limit = 0)
+        public async Task<WeatherLocation[]> GetDirectGeocoding(string Name, int Limit = 0, CancellationToken Cancel = default)
         {
-            return await _client.GetFromJsonAsync<WeatherLocation[]>(
-                $"/geo/1.0/direct?q={Name}" +
-                (Limit == 0 ? "" : $"&limit={Limit}") +
-                $"&appid={_ApiKey}");
+            return await _client
+                .GetFromJsonAsync<WeatherLocation[]>(
+                    $"/geo/1.0/direct?q={Name}" +
+                    (Limit == 0 ? "" : $"&limit={Limit}") +
+                    $"&appid={_ApiKey}", 
+                    cancellationToken: Cancel)
+                .ConfigureAwait(false);
         } 
         
-        public async Task<WeatherLocation[]> GetReverseGeocoding(double Lat, double Lon,int Limit = 0)
+        public async Task<WeatherLocation[]> GetReverseGeocoding(double Latitude, double Longitude, int Limit = 0, CancellationToken Cancel = default)
         {
-            return await _client.GetFromJsonAsync<WeatherLocation[]>(
-                $"/geo/1.0/reverse?lat={Lat}&lon={Lon}" +
-                (Limit == 0 ? "" : $"&limit={Limit}") +
-                $"&appid={_ApiKey}");
+            return await _client
+                .GetFromJsonAsync<WeatherLocation[]>(
+                    $"/geo/1.0/reverse?lat={Latitude}&lon={Longitude}" +
+                    (Limit == 0 ? "" : $"&limit={Limit}") +
+                    $"&appid={_ApiKey}", 
+                    cancellationToken: Cancel)
+                .ConfigureAwait(false);
         }
 
-        public async Task<WeatherZipLocation> GetCoordinatesByZip(string ZipCode)
+        public async Task<WeatherZipLocation> GetCoordinatesByZip(string ZipCode, CancellationToken Cancel = default)
         {
-            return await _client.GetFromJsonAsync<WeatherZipLocation>(
-                $"/geo/1.0/zip?zip={ZipCode}" +
-                $"&appid={_ApiKey}");
+            return await _client
+                .GetFromJsonAsync<WeatherZipLocation>(
+                    $"/geo/1.0/zip?zip={ZipCode}" +
+                    $"&appid={_ApiKey}", 
+                    cancellationToken: Cancel)
+                .ConfigureAwait(false);
         }
 
         #endregion // Geo 1.0
@@ -62,27 +72,4 @@ namespace AmberCastle.OpenWeather
 
         #endregion // Конструктор
     }
-
-
-    public class WeatherLocation
-    {
-        public string name { get; set; }
-        public Dictionary<string, string> local_names { get; set; }
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string country { get; set; }
-        public string state { get; set; }
-    }
-
-
-    public class WeatherZipLocation
-    {
-        public string zip { get; set; }
-        public string name { get; set; }
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string country { get; set; }
-    }
-
-    
 }
