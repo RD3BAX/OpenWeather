@@ -63,6 +63,8 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var weatherOneCall = await weather.GetWeatherOneCall(location[0].Latitude, location[0].Longitude);
 
+            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(1623217560);
+
             Console.WriteLine("Завершено!");
             Console.ReadLine();
             await host.StopAsync();

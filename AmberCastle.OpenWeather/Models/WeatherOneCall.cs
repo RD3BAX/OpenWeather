@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
+using AmberCastle.OpenWeather.Service;
 
 namespace AmberCastle.OpenWeather.Models
 {
@@ -48,7 +50,10 @@ namespace AmberCastle.OpenWeather.Models
 
     public class Minutely
     {
-        public int dt { get; set; }
+        [JsonPropertyName("dt")]
+        [JsonConverter(typeof(JsonUnixTimeConverter))]
+        public DateTimeOffset Time { get; set; }
+
         public int precipitation { get; set; }
     }
 
@@ -66,7 +71,7 @@ namespace AmberCastle.OpenWeather.Models
         public float wind_speed { get; set; }
         public int wind_deg { get; set; }
         public float wind_gust { get; set; }
-        public Weather1[] weather { get; set; }
+        public WeatherIcons[] weather { get; set; }
         public float pop { get; set; }
         public Rain rain { get; set; }
     }
@@ -76,7 +81,7 @@ namespace AmberCastle.OpenWeather.Models
         public float _1h { get; set; }
     }
 
-    public class Weather1
+    public class WeatherIcons
     {
         public int id { get; set; }
         public string main { get; set; }
@@ -142,5 +147,4 @@ namespace AmberCastle.OpenWeather.Models
         public string description { get; set; }
         public string[] tags { get; set; }
     }
-
 }
