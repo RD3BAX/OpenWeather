@@ -2,6 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.0.1</Version>
+    <PackageReleaseNotes>Старт проекта!
+Реализованы методы геокодирования.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AmberCastle.OpenWeather.snk</AssemblyOriginatorKeyFile>
+    <Authors>rd3bax@gmail.com</Authors>
+    <Company>Amber-Castle</Company>
+    <Description>Клиент для OpenWeatherMap.org</Description>
+    <Copyright>rd3bax@gmail.com</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/RD3BAX/OpenWeather</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RD3BAX/OpenWeather</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Weather, OpenWeatherMap, WebAPI</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
