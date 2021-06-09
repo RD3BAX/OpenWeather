@@ -61,6 +61,8 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var zipLocal = await weather.GetCoordinatesByZip("26651");
 
+            var weatherOneCall = await weather.GetWeatherOneCall(location[0].Latitude, location[0].Longitude);
+
             Console.WriteLine("Завершено!");
             Console.ReadLine();
             await host.StopAsync();
