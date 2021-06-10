@@ -1,150 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
-using AmberCastle.OpenWeather.Service;
+﻿using System.Text.Json.Serialization;
 
 namespace AmberCastle.OpenWeather.Models
 {
-   
-
     public class WeatherOneCall
-{
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string timezone { get; set; }
-        public int timezone_offset { get; set; }
-        public Current current { get; set; }
-        public Minutely[] minutely { get; set; }
-        public Hourly[] hourly { get; set; }
-        public Daily[] daily { get; set; }
-        public Alert[] alerts { get; set; }
-    }
-
-    public class Current
     {
-        public int dt { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
-        public float temp { get; set; }
-        public float feels_like { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public float dew_point { get; set; }
-        public float uvi { get; set; }
-        public int clouds { get; set; }
-        public int visibility { get; set; }
-        public float wind_speed { get; set; }
-        public int wind_deg { get; set; }
-        public float wind_gust { get; set; }
-        public Weather[] weather { get; set; }
-    }
+        /// <summary>
+        ///  Географические координаты местоположения (широта)
+        /// </summary>
+        [JsonPropertyName("lat")]
+        public double Latitude { get; set; }
 
-    public class Weather
-    {
-        public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
-    }
+        /// <summary>
+        /// Географические координаты местоположения (долгота)
+        /// </summary>
+        [JsonPropertyName("lon")]
+        public double Longitude { get; set; }
 
-    public class Minutely
-    {
-        [JsonPropertyName("dt")]
-        [JsonConverter(typeof(JsonUnixTimeConverter))]
-        public DateTimeOffset Time { get; set; }
+        /// <summary>
+        /// Название тайм-зоны для запрашиваемого местоположения
+        /// </summary>
+        [JsonPropertyName("timezone")]
+        public string TimeZone { get; set; }
 
-        public int precipitation { get; set; }
-    }
+        /// <summary>
+        /// Сдвиг в секундах от UTC
+        /// </summary>
+        [JsonPropertyName("timezone_offset")]
+        public int TimeZoneOffset { get; set; }
 
-    public class Hourly
-    {
-        public int dt { get; set; }
-        public float temp { get; set; }
-        public float feels_like { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public float dew_point { get; set; }
-        public float uvi { get; set; }
-        public int clouds { get; set; }
-        public int visibility { get; set; }
-        public float wind_speed { get; set; }
-        public int wind_deg { get; set; }
-        public float wind_gust { get; set; }
-        public WeatherIcons[] weather { get; set; }
-        public float pop { get; set; }
-        public Rain rain { get; set; }
-    }
+        /// <summary>
+        /// Текущие метеорологические данные
+        /// </summary>
+        [JsonPropertyName("current")]
+        public Current Current { get; set; }
 
-    public class Rain
-    {
-        public float _1h { get; set; }
-    }
+        /// <summary>
+        /// Минутный прогноз погоды
+        /// </summary>
+        [JsonPropertyName("minutely")]
+        public Minutely[] Minutelys { get; set; }
 
-    public class WeatherIcons
-    {
-        public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
-    }
+        /// <summary>
+        ///  Почасовой прогноз погоды
+        /// </summary>
+        [JsonPropertyName("hourly")]
+        public Hourly[] Hourlys { get; set; }
 
-    public class Daily
-    {
-        public int dt { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
-        public int moonrise { get; set; }
-        public int moonset { get; set; }
-        public float moon_phase { get; set; }
-        public Temp temp { get; set; }
-        public Feels_Like feels_like { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public float dew_point { get; set; }
-        public float wind_speed { get; set; }
-        public int wind_deg { get; set; }
-        public float wind_gust { get; set; }
-        public Weather2[] weather { get; set; }
-        public int clouds { get; set; }
-        public float pop { get; set; }
-        public float rain { get; set; }
-        public float uvi { get; set; }
-    }
+        /// <summary>
+        /// Прогноз по дням
+        /// </summary>
+        [JsonPropertyName("daily")]
+        public Daily[] Dailys { get; set; }
 
-    public class Temp
-    {
-        public float day { get; set; }
-        public float min { get; set; }
-        public float max { get; set; }
-        public float night { get; set; }
-        public float eve { get; set; }
-        public float morn { get; set; }
-    }
-
-    public class Feels_Like
-    {
-        public float day { get; set; }
-        public float night { get; set; }
-        public float eve { get; set; }
-        public float morn { get; set; }
-    }
-
-    public class Weather2
-    {
-        public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
-    }
-
-    public class Alert
-    {
-        public string sender_name { get; set; }
-        public string _event { get; set; }
-        public int start { get; set; }
-        public int end { get; set; }
-        public string description { get; set; }
-        public string[] tags { get; set; }
+        /// <summary>
+        /// Национальные данные о погоде от основных национальных систем предупреждения о погоде
+        /// </summary>
+        [JsonPropertyName("alerts")]
+        public Alert[] Alerts { get; set; }
     }
 }

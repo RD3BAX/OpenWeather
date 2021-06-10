@@ -27,7 +27,6 @@ namespace AmberCastle.OpenWeather.TestConsole
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5))
                 .AddPolicyHandler(GetRetryPolicy())
                 ;
-            //Services.GetRequiredService<OpenWeatherClient>().ApiKey = host.Configuration["OpenWeather:ApiKey"];
         }
 
         private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
@@ -63,7 +62,7 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var weatherOneCall = await weather.GetWeatherOneCall(location[0].Latitude, location[0].Longitude);
 
-            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(1623217560);
+            
 
             Console.WriteLine("Завершено!");
             Console.ReadLine();
