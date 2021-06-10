@@ -65,7 +65,7 @@ namespace AmberCastle.OpenWeather.TestConsole
             var timeCurrent = weatherOneCall.Current.Time.LocalDateTime;
 
             var timemachine =
-                weather.GetWeatherTimeMachine(location[0].Latitude, location[0].Longitude, DateTimeOffset.Now);
+                await weather.GetWeatherTimeMachine(location[0].Latitude, location[0].Longitude, DateTimeOffset.Now);
 
             Console.WriteLine("Завершено!");
             Console.ReadLine();

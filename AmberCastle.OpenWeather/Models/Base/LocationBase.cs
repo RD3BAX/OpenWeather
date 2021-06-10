@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AmberCastle.OpenWeather.Models
+namespace AmberCastle.OpenWeather.Models.Base
 {
     public class LocationBase
     {
