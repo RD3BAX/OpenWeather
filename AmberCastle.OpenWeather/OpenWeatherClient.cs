@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,6 +26,25 @@ namespace AmberCastle.OpenWeather
 
         #region Data 2.5 OneCall
 
+        public async Task<WeatherTimeMachine> GetWeatherTimeMachine(
+            double Latitude, double Longitude,
+            DateTimeOffset Time,
+            string Units = "metric",
+            string Lang = "ru",
+            CancellationToken Cancel = default)
+        {
+            return await _client
+                .GetFromJsonAsync<WeatherTimeMachine>(
+                    $"/data/2.5/onecall/timemachine" +
+                    $"?lat={Latitude}&lon={Longitude}" +
+                    $"&dt={Time.ToUnixTimeSeconds().ToString()}" +
+                    (Units == "" ? "" : $"&units={Units}") +
+                    (Lang == "" ? "" : $"&lang={Lang}") +
+                    $"&appid={_ApiKey}",
+                    cancellationToken: Cancel)
+                .ConfigureAwait(false);
+        }
+
         public async Task<WeatherOneCall> GetWeatherOneCall(
             double Latitude, double Longitude,
             string Exclude = "",
@@ -34,7 +54,8 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherOneCall>(
-                    $"/data/2.5/onecall?lat={Latitude}&lon={Longitude}" +
+                    $"/data/2.5/onecall" +
+                    $"?lat={Latitude}&lon={Longitude}" +
                     (Exclude == "" ? "" : $"&exclude={Exclude}") +
                     (Units == "" ? "" : $"&units={Units}") +
                     (Lang == "" ? "" : $"&lang={Lang}") +

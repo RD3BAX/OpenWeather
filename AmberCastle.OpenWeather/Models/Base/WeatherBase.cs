@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using AmberCastle.OpenWeather.Service;
 
-namespace AmberCastle.OpenWeather.Models
+namespace AmberCastle.OpenWeather.Models.Base
 {
     public abstract class WeatherBase
     {
