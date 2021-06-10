@@ -23,6 +23,28 @@ namespace AmberCastle.OpenWeather
 
         #region Методы
 
+        #region Data 2.5 OneCall
+
+        public async Task<WeatherOneCall> GetWeatherOneCall(
+            double Latitude, double Longitude,
+            string Exclude = "",
+            string Units = "metric",
+            string Lang = "ru",
+            CancellationToken Cancel = default)
+        {
+            return await _client
+                .GetFromJsonAsync<WeatherOneCall>(
+                    $"/data/2.5/onecall?lat={Latitude}&lon={Longitude}" +
+                    (Exclude == "" ? "" : $"&exclude={Exclude}") +
+                    (Units == "" ? "" : $"&units={Units}") +
+                    (Lang == "" ? "" : $"&lang={Lang}") +
+                    $"&appid={_ApiKey}",
+                    cancellationToken: Cancel)
+                .ConfigureAwait(false);
+        }
+
+        #endregion // Data 2.5 OneCall
+
         #region Geo 1.0
 
         public async Task<WeatherLocation[]> GetDirectGeocoding(string Name, int Limit = 0, CancellationToken Cancel = default)

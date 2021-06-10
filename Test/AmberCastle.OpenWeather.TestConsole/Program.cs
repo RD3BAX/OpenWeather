@@ -27,7 +27,6 @@ namespace AmberCastle.OpenWeather.TestConsole
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5))
                 .AddPolicyHandler(GetRetryPolicy())
                 ;
-            //Services.GetRequiredService<OpenWeatherClient>().ApiKey = host.Configuration["OpenWeather:ApiKey"];
         }
 
         private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
@@ -60,6 +59,10 @@ namespace AmberCastle.OpenWeather.TestConsole
             var reverse = await weather.GetReverseGeocoding(location[0].Latitude, location[0].Longitude);
 
             var zipLocal = await weather.GetCoordinatesByZip("26651");
+
+            var weatherOneCall = await weather.GetWeatherOneCall(location[0].Latitude, location[0].Longitude);
+
+            
 
             Console.WriteLine("Завершено!");
             Console.ReadLine();
