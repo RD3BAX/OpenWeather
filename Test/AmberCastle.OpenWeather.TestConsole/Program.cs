@@ -46,7 +46,7 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var weather = Services.GetRequiredService<OpenWeatherClient>();
 
-            var location = await weather.GetDirectGeocoding("Moscow",10);
+            var location = await weather.GetDirectGeocoding("Ялта",10);
 
 
             var key = "ru";
@@ -62,7 +62,10 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var weatherOneCall = await weather.GetWeatherOneCall(location[0].Latitude, location[0].Longitude);
 
-            
+            var timeCurrent = weatherOneCall.Current.Time.LocalDateTime;
+
+            var timemachine =
+                await weather.GetWeatherTimeMachine(location[0].Latitude, location[0].Longitude, DateTimeOffset.Now);
 
             Console.WriteLine("Завершено!");
             Console.ReadLine();

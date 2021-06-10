@@ -21,5 +21,7 @@ namespace AmberCastle.OpenWeather.Models
         /// </summary>
         [JsonPropertyName("precipitation")]
         public double Precipitation { get; set; }
+
+        public override string ToString() => $"{Time.LocalDateTime.TimeOfDay.ToString()} - {Precipitation} mm";
     }
 }

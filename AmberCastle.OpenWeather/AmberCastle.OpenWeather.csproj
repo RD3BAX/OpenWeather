@@ -7,15 +7,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.0.2</Version>
-    <PackageReleaseNotes>Метод GetWeatherOneCall.
-API One Call предоставляет следующие данные о погоде для любых географических координат:
-      Текущая погода
-      Прогноз минуты на 1 час
-      Почасовой прогноз на 48 часов
-      Ежедневный прогноз на 7 дней
-      Национальные предупреждения о погоде
-      Исторические данные о погоде за предыдущие 5 дней</PackageReleaseNotes>
+    <Version>0.0.3</Version>
+    <PackageReleaseNotes>Метод GetWeatherTimeMachine. 
+Исторические данные о погоде за предыдущие 5 дней
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>

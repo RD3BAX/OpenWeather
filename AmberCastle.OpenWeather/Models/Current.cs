@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using AmberCastle.OpenWeather.Models.Base;
 using AmberCastle.OpenWeather.Service;
 
 namespace AmberCastle.OpenWeather.Models
