@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <SignAssembly>true</SignAssembly>
+    <GeneratePackageBuild>false</GeneratePackageBuild>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -14,16 +14,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AmberCastle.OpenWeather.snk</AssemblyOriginatorKeyFile>
-    <Authors>rd3bax@gmail.com</Authors>
     <Company>Amber-Castle</Company>
+    <Product>OpenWeatherApi</Product>
+    <Authors>rd3bax@gmail.com</Authors>
     <Description>Клиент для OpenWeatherMap.org</Description>
     <Copyright>rd3bax@gmail.com</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/RD3BAX/OpenWeather</PackageProjectUrl>
     <RepositoryUrl>https://github.com/RD3BAX/OpenWeather</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <SignAssembly>true</SignAssembly>
     <PackageTags>Weather, OpenWeatherMap, WebAPI</PackageTags>
+    <AssemblyOriginatorKeyFile>AmberCastle.OpenWeather.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

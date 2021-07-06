@@ -13,7 +13,6 @@ namespace AmberCastle.OpenWeather
         #region Поля
 
         private readonly HttpClient _client;
-        private readonly IConfiguration _config;
         private readonly string _ApiKey;
 
         #endregion // Поля
@@ -35,7 +34,7 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherTimeMachine>(
-                    $"/data/2.5/onecall/timemachine" +
+                    $"data/2.5/onecall/timemachine" +
                     $"?lat={Latitude}&lon={Longitude}" +
                     $"&dt={Time.ToUnixTimeSeconds().ToString()}" +
                     (Units == "" ? "" : $"&units={Units}") +
@@ -54,7 +53,7 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherOneCall>(
-                    $"/data/2.5/onecall" +
+                    $"data/2.5/onecall" +
                     $"?lat={Latitude}&lon={Longitude}" +
                     (Exclude == "" ? "" : $"&exclude={Exclude}") +
                     (Units == "" ? "" : $"&units={Units}") +
@@ -72,7 +71,7 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherLocation[]>(
-                    $"/geo/1.0/direct?q={Name}" +
+                    $"geo/1.0/direct?q={Name}" +
                     (Limit == 0 ? "" : $"&limit={Limit}") +
                     $"&appid={_ApiKey}", 
                     cancellationToken: Cancel)
@@ -83,7 +82,7 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherLocation[]>(
-                    $"/geo/1.0/reverse?lat={Latitude}&lon={Longitude}" +
+                    $"geo/1.0/reverse?lat={Latitude}&lon={Longitude}" +
                     (Limit == 0 ? "" : $"&limit={Limit}") +
                     $"&appid={_ApiKey}", 
                     cancellationToken: Cancel)
@@ -94,7 +93,7 @@ namespace AmberCastle.OpenWeather
         {
             return await _client
                 .GetFromJsonAsync<WeatherZipLocation>(
-                    $"/geo/1.0/zip?zip={ZipCode}" +
+                    $"geo/1.0/zip?zip={ZipCode}" +
                     $"&appid={_ApiKey}", 
                     cancellationToken: Cancel)
                 .ConfigureAwait(false);
@@ -109,8 +108,7 @@ namespace AmberCastle.OpenWeather
         public OpenWeatherClient(HttpClient Client, IConfiguration config)
         {
             _client = Client;
-            _config = config;
-            _ApiKey = config["OpenWeather:ApiKey"];
+            _ApiKey = config["OpenWeatherAPI:ApiKey"];
         }
 
         #endregion // Конструктор

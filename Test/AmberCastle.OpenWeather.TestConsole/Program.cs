@@ -23,7 +23,13 @@ namespace AmberCastle.OpenWeather.TestConsole
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddHttpClient<OpenWeatherClient>(client =>
-                client.BaseAddress = new Uri(host.Configuration["OpenWeather:Http"]))
+                {
+                    var config = host.Configuration.GetSection("OpenWeatherAPI");
+                    client.BaseAddress = new Uri(
+                        $"{config["Schema"]}" +
+                        $"{config["Address"]}" +
+                        $"/");
+                })
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5))
                 .AddPolicyHandler(GetRetryPolicy())
                 ;
@@ -46,7 +52,7 @@ namespace AmberCastle.OpenWeather.TestConsole
 
             var weather = Services.GetRequiredService<OpenWeatherClient>();
 
-            var location = await weather.GetDirectGeocoding("Ялта",10);
+            var location = await weather.GetDirectGeocoding("Москва",10);
 
 
             var key = "ru";
