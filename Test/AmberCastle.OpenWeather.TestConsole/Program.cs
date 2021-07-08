@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Polly;
@@ -18,6 +19,15 @@ namespace AmberCastle.OpenWeather.TestConsole
 
         public static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostContext, builder) =>
+            {
+                // Add other providers for JSON, etc.
+
+                if (hostContext.HostingEnvironment.IsDevelopment())
+                {
+                    builder.AddUserSecrets<Program>();
+                }
+            })
             .ConfigureServices(ConfigureServices);
 
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
@@ -26,7 +36,7 @@ namespace AmberCastle.OpenWeather.TestConsole
                 {
                     var config = host.Configuration.GetSection("OpenWeatherAPI");
                     client.BaseAddress = new Uri(
-                        $"{config["Schema"]}" +
+                        $"{config["Schema"]}://" +
                         $"{config["Address"]}" +
                         $"/");
                 })
